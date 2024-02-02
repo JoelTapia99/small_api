@@ -1,2 +1,58 @@
-2024-02-01 22:22:17 | INFO | GET /
-2024-02-01 22:48:02 | INFO | GET /
+2024-02-02 02:40:22 | ERROR | Object of type User is not JSON serializable
+2024-02-02 02:40:22 | ERROR | Traceback (most recent call last):
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\src\routes\UserRoute.py", line 35, in find
+    "response": jsonify(User(*response))}
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\provider.py", line 215, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=self.mimetype
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\provider.py", line 180, in dumps
+    return json.dumps(obj, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\provider.py", line 120, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type User is not JSON serializable
+
+2024-02-02 02:46:41 | ERROR | Object of type Response is not JSON serializable
+2024-02-02 02:46:41 | ERROR | Traceback (most recent call last):
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\src\routes\UserRoute.py", line 33, in find
+    response = jsonify({
+               ^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\__init__.py", line 170, in jsonify
+    return current_app.json.response(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\provider.py", line 215, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=self.mimetype
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\provider.py", line 180, in dumps
+    return json.dumps(obj, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "C:\Users\pc\Documents\Desarrollo\flask-folders-structure-master\venv\Lib\site-packages\flask\json\provider.py", line 120, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type Response is not JSON serializable
+

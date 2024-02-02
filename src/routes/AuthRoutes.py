@@ -1,21 +1,22 @@
-from flask import Blueprint, request, jsonify
-
 import traceback
 
-# Logger
-from src.utils.Logger import Logger
+from flask import Blueprint, request, jsonify
+
 # Models
 from src.models.UserModel import User
-# Security
-from src.utils.Security import Security
 # Services
 from src.services.AuthService import AuthService
+# Logger
+from src.utils.Logger import Logger
+# Security
+from src.utils.Security import Security
 
 main = Blueprint('auth_blueprint', __name__)
 
 
 @main.route('/', methods=['POST'])
 def login():
+    print("Hola hola")
     try:
         username = request.json['username']
         password = request.json['password']

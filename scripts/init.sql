@@ -75,12 +75,14 @@ INSERT INTO `language` (`id`, `name`) VALUES
 -- Estructura de tabla para la tabla `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` smallint(3) UNSIGNED NOT NULL,
-  `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `password` blob NOT NULL,
-  `fullname` varchar(50) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores the user''s data.';
+  `id` smallint unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `fullname` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+)
 
 --
 -- Volcado de datos para la tabla `user`
