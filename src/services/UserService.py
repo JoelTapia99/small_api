@@ -17,7 +17,8 @@ class UserService:
 
                 if user.id is not None:
                     user.add_cursor_and_connection(cursor, connection)
-                    return user.get_by_id()
+                    result = user.get_by_id()
+                    return user.tuple_to_dict(result)
                 else:
                     print("User not found")
 
@@ -30,11 +31,12 @@ class UserService:
         try:
             connection = get_connection()
             with connection.cursor() as cursor:
-                if user.id is not None:
+                if user.id is None:
                     user.add_cursor_and_connection(cursor, connection)
-                    user.create_db()
+                    result = user.create_db()
+                    return user.tuple_to_dict(result)
                 else:
-                    print("User not found")
+                    print("A new User not wold contain id")
 
         except Exception as ex:
             Logger.add_to_log("error", str(ex))
@@ -48,7 +50,8 @@ class UserService:
                 user.add_cursor_and_connection(cursor, connection)
 
                 if user.get_by_id() is not None:
-                    user.update()
+                    result = user.update_db()
+                    return user.tuple_to_dict(result)
                 else:
                     print("User not found")
 

@@ -50,12 +50,12 @@ def create():
         password = request.json['password']
         full_name = request.json['fullName']
 
-        new_user = User(id, username, password, full_name)
-        UserService.save(new_user)
+        new_user = User(None, username, password, full_name)
+        res = UserService.save(new_user)
 
         response = jsonify({
             'success': True,
-            "response": "user create"}
+            "response": res}
         )
         return response, 200
 

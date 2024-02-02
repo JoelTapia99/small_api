@@ -22,19 +22,24 @@ class User:
             Logger.add_to_log("debug", query)
             self.cursor.execute(query)
             self.connection.commit()
+            return self.get_last()
         except Exception as e:
             Logger.add_to_log("error", e)
 
-    def update(self):
-        query = (f"UPDATE `user` "
-                 f"SET "
-                 f"`username`='{self.username}', "
-                 f"`password`='{self.password}', "
-                 f"`fullname`='{self.fullname}' "
-                 f"WHERE "
-                 f"`id`={self.id}")
-        self.cursor.execute(query)
-        self.connection.commit()
+    def update_db(self):
+        try:
+            query = (f"UPDATE `user` "
+                     f"SET "
+                     f"`username`='{self.username}', "
+                     f"`password`='{self.password}', "
+                     f"`fullname`='{self.fullname}' "
+                     f"WHERE "
+                     f"`id`={self.id}")
+            self.cursor.execute(query)
+            self.connection.commit()
+            return self.get_by_id()
+        except Exception as e:
+            Logger.add_to_log("error", e)
 
     def get_by_id(self):
         query = "SELECT * FROM `user` WHERE `id` = %s;"
@@ -48,9 +53,22 @@ class User:
         self.cursor.execute(sql)
         self.connection.commit()
 
+    def get_last(self):
+        query = "SELECT * FROM `user` order by id desc limit 1"
+        self.cursor.execute(query)
+        return self.cursor.fetchone()
+
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.username,
             'fullName': self.fullname
+        }
+
+    @staticmethod
+    def tuple_to_dict(tuple_res):
+        return {
+            'id': tuple_res[0],
+            'name': tuple_res[1],
+            'fullName': tuple_res[2]
         }
